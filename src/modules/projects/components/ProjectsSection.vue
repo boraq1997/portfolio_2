@@ -47,7 +47,7 @@
           <div class="relative h-48 overflow-hidden bg-zinc-800">
             <img
               v-if="project.images[0]"
-              :src="assetUrl(project.images[0])"
+              :src="project.images[0]"
               :alt="project.title"
               loading="lazy"
               class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
@@ -130,7 +130,7 @@
               <img
                 v-if="selectedProject.images[activeImage]"
                 :key="activeImage"
-                :src="assetUrl(selectedProject.images[activeImage])"
+                :src="selectedProject.images[activeImage]"
                 :alt="selectedProject.title"
                 loading="lazy"
                 class="w-full h-full object-cover"
@@ -215,12 +215,7 @@
                     class="relative aspect-video rounded-xl overflow-hidden border-2 transition-all duration-200"
                     :class="activeImage === i ? 'border-red-500' : 'border-transparent opacity-60 hover:opacity-100'"
                   >
-                    <img
-                      :src="assetUrl(img)"
-                      :alt="`image ${i + 1}`"
-                      loading="lazy"
-                      class="w-full h-full object-cover"
-                    />
+                    <img :src="img" :alt="`image ${(i as number) + 1}`" loading="lazy" class="w-full h-full object-cover" />
                   </button>
                 </div>
               </div>
@@ -237,7 +232,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useLang } from '../../../app/composables/useLang'
-import { assetUrl } from '../../../app/config/env'
 
 const { projects, t, isRtl } = useLang()
 
