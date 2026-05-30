@@ -1,1 +1,0 @@
-import{d as e,f as t,l as n,t as r,u as i}from"./index-83Xwoh6k.js";var a=e({__name:`HomePage`,setup(e){return(e,a)=>(t(),n(`div`,null,[i(r)]))}});export{a as default};
