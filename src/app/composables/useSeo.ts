@@ -1,9 +1,8 @@
-import { watch } from 'vue'
 import { useHead } from '@vueuse/head'
 import { useLang } from './useLang'
 
 export function useSeo() {
-  const { personal, t, isRtl, currentLang } = useLang()
+  const { personal, isRtl, currentLang } = useLang()
 
   useHead({
     title: () => `${personal.value.name} | ${personal.value.title}`,

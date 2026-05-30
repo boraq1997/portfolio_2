@@ -31,6 +31,8 @@ export const projects = [
       بناء واجهة RTL إنتاجية بدون مكتبات تحكم اتجاه، بالاعتماد على PrimeFlex و CSS variables مخصصة
       حل مشاكل eager loading تتسبب في null relationships في الـ API responses عند تعدد مستويات التعشيش`,
     tags: ['Laravel', 'Vue', 'TypeScrypt', 'PrimeVue', 'Procurement', 'ERP', 'RBAC', 'RTL', 'REST API', 'Spatie', 'Pinia', 'Full-Stack', 'PrimeFlex', 'MySql'],
+    github: 'https://github.com/boraq1997',
+    demo: 'https://procurement-demo.com',
     images: [
       '/images/projects/Purchase_project/7.png',
       '/images/projects/Purchase_project/1.png',
@@ -48,6 +50,8 @@ export const projects = [
     description: 'قبل هذا النظام، كان طاقم الخدمة يعتمد على الورقة والقلم أو أجهزة منفصلة لا تتحدث مع بعضها — أوامر تضيع، طلبات تتأخر، وكابتن الصالة يركض بين الطاولات والمطبخ.',
     details: `RestoFlow نظام إدارة مطاعم real-time مبني بـ Vue 3 + TypeScript على الـ Frontend وASP.NET Core على الـ Backend. الزبون يمسح QR الطاولة ويرى المينيو كاملاً مع الأسعار والوصف ويرسل طلبه مباشرة — بدون تطبيق، بدون تسجيل. الطلب يصل فورياً لكابتن الصالة الذي يراجعه ويؤكده باسمه، ثم يتوزع تلقائياً على الطابعات المختصة (بيتزا، شاورما، مشاوي...) حسب تصنيف كل صنف. لوحة الكابتن تعرض حالة كل طاولة بالوقت الفعلي مع تتبع مدة الانتظار، وإدارة الحجوزات، وصلاحيات متعددة المستويات. التحدي الرئيسي كان تصميم تدفق الطلب عبر أكثر من طرف (زبون → كابتن → مطبخ → طابعة) مع ضمان أن كل تعديل يمر من نقطة تحكم واحدة دون فوضى في الحالة — حُلّ بمتاجر Pinia منظمة لكل domain وAxios interceptors مركزية لإدارة الـ auth.`,
     tags: ['Vue', 'Vite', 'TypeScript', 'PrimeVue', 'PrimeFlex', 'Pinia', 'ASP.NET Core', 'REST API', 'QR Ordering', 'Real-time', 'Management', 'POS', 'Multi-role', 'JWT Auth'],
+    github: 'https://github.com/boraq1997',
+    demo: 'https://restaurant-demo.com',
     images: [
       '/images/projects/restaurant/1.png',
       '/images/projects/restaurant/2.png',
@@ -67,6 +71,8 @@ export const projects = [
               Stack: Laravel (REST API) · Vue 3 + TypeScript (Frontend) · Sanctum للمصادقة · Role-based access (Admin / Teacher / Sub-Teacher / Student) · Push Notifications عبر OneSignal · Activity Logs للتدقيق.
               أبرز التحديات: بناء نظام صلاحيات متعدد الأدوار بشكل مرن دون تعقيد الـ middleware، ومزامنة بيانات الحضور والدرجات في الوقت الفعلي بين واجهة المعلم ولوحة الإدارة — تم حلها عبر reactive watchers وإعادة جلب ذكية للبيانات عند كل تغيير.`,
     tags: ['Laravel', 'Vue', 'TypeScript', 'Education', 'Management', 'Multi-role', 'REST API', 'EduTech', 'SPA', 'Full Stack', 'Tailwind'],
+    github: 'https://github.com/boraq1997',
+    demo: 'https://education-demo.com',
     images: [
       '/images/projects/almuthaber/1.png',
       '/images/projects/almuthaber/2.png',

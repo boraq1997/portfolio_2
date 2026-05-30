@@ -151,7 +151,7 @@
               <button
                 v-for="(_, i) in selectedProject.images"
                 :key="i"
-                @click="activeImage = i"
+                @click="activeImage = i as number"
                 class="h-1.5 rounded-full transition-all duration-300"
                 :class="activeImage === i ? 'w-6 bg-white' : 'w-1.5 bg-white/40'"
               />
@@ -211,11 +211,11 @@
                   <button
                     v-for="(img, i) in selectedProject.images"
                     :key="i"
-                    @click="activeImage = i"
+                    @click="activeImage = i as number"
                     class="relative aspect-video rounded-xl overflow-hidden border-2 transition-all duration-200"
                     :class="activeImage === i ? 'border-red-500' : 'border-transparent opacity-60 hover:opacity-100'"
                   >
-                    <img :src="img" :alt="`image ${i + 1}`" loading="lazy" class="w-full h-full object-cover" />
+                    <img :src="img" :alt="`image ${(i as number) + 1}`" loading="lazy" class="w-full h-full object-cover" />
                   </button>
                 </div>
               </div>
@@ -237,7 +237,7 @@ const { projects, t, isRtl } = useLang()
 
 const activeFilter = ref('all')
 const selectedProject = ref<any>(null)
-const activeImage = ref(0)
+const activeImage = ref<number>(0)
 
 const allTags = computed(() => {
   const tags = projects.value.flatMap(p => p.tags)

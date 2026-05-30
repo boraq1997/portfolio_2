@@ -30,6 +30,8 @@ export const projects = [
       - Building a production-ready RTL interface without directional control libraries, relying on PrimeFlex and custom CSS variables
       - Resolving eager loading issues causing null relationships in API responses with deeply nested data`,
     tags: ['Laravel', 'Vue', 'TypeScript', 'PrimeVue', 'Procurement', 'ERP', 'RBAC', 'RTL', 'REST API', 'Spatie', 'Pinia', 'Full-Stack', 'PrimeFlex', 'MySQL'],
+    github: 'https://github.com/boraq1997',
+    demo: 'https://procurement-demo.com',
     images: [
       '/images/projects/Purchase_project/7.png',
       '/images/projects/Purchase_project/1.png',
@@ -47,6 +49,8 @@ export const projects = [
     description: 'Before this system, service staff relied on paper and pen or separate devices that couldn\'t communicate — orders got lost, requests were delayed, and the floor captain was constantly running between tables and the kitchen.',
     details: `RestoFlow is a real-time restaurant management system built with Vue 3 + TypeScript on the Frontend and ASP.NET Core on the Backend. The customer scans the table QR code and sees the full menu with prices and descriptions, then sends their order directly — no app, no registration. The order instantly reaches the floor captain who reviews and confirms it, then automatically routes to the appropriate printers (pizza, shawarma, grills...) based on each item's category. The captain's dashboard shows the real-time status of every table with wait time tracking, reservation management, and multi-level permissions. The key challenge was designing the order flow across multiple parties (customer → captain → kitchen → printer) while ensuring every change passes through a single control point without state chaos — solved with organized Pinia stores per domain and centralized Axios interceptors for auth management.`,
     tags: ['Vue', 'Vite', 'TypeScript', 'PrimeVue', 'PrimeFlex', 'Pinia', 'ASP.NET Core', 'REST API', 'QR Ordering', 'Real-time', 'Management', 'POS', 'Multi-role', 'JWT Auth'],
+    github: 'https://github.com/boraq1997',
+    demo: 'https://restaurant-demo.com',
     images: [
       '/images/projects/restaurant/1.png',
       '/images/projects/restaurant/2.png',
@@ -66,6 +70,8 @@ export const projects = [
               Stack: Laravel (REST API) · Vue 3 + TypeScript (Frontend) · Sanctum for authentication · Role-based access (Admin / Teacher / Sub-Teacher / Student) · Push Notifications via OneSignal · Activity Logs for auditing.
               Key Challenges: Building a flexible multi-role permissions system without complicating middleware, and synchronizing attendance and grade data in real-time between the teacher interface and admin dashboard — solved via reactive watchers and smart data re-fetching on every change.`,
     tags: ['Laravel', 'Vue', 'TypeScript', 'Education', 'Management', 'Multi-role', 'REST API', 'EduTech', 'SPA', 'Full Stack', 'Tailwind'],
+    github: 'https://github.com/boraq1997',
+    demo: 'https://education-demo.com',
     images: [
       '/images/projects/almuthaber/1.png',
       '/images/projects/almuthaber/2.png',
