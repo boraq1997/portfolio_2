@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+* {
+  font-family: 'Cairo', sans-serif;
+}
+
+.scroll-animate,
+.scroll-animate-left,
+.scroll-animate-right {
+  opacity: 0;
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.scroll-animate {
+  transform: translateY(20px);
+}
+
+.scroll-animate-left {
+  transform: translateX(-20px);
+}
+
+.scroll-animate-right {
+  transform: translateX(20px);
+}
+
+.scroll-animate.animate-in,
+.scroll-animate-left.animate-in,
+.scroll-animate-right.animate-in {
+  opacity: 1;
+  transform: translate(0);
+}
+
+/* Delay utilities */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+.delay-500 { transition-delay: 500ms; }
