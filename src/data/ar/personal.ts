@@ -6,7 +6,7 @@ export const personal = {
   email: 'boraqnz@gmail.com',
   phone: '+9647711459546',
   location: 'العراق، كربلاء',
-  avatar: '/images/me.jpg',
+  avatar: 'images/me.jpg',
   social: {
     github: 'https://github.com/boraq1997',
     telegram: 'https://t.me/boraq1997',

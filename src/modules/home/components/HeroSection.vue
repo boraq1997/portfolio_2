@@ -80,7 +80,7 @@
           <div class="absolute inset-0 rounded-full bg-red-950/40 blur-3xl scale-125 animate-pulse-slow" />
 
           <img
-            :src="personal.avatar"
+            :src="assetUrl(personal.avatar)"
             :alt="personal.name"
             loading="eager"
             class="relative w-72 h-72 md:w-[400px] md:h-[400px] object-cover rounded-full border border-zinc-800/80 grayscale hover:grayscale-0 transition-all duration-700"
@@ -120,6 +120,7 @@
 
 <script setup lang="ts">
 import { useLang } from '../../../app/composables/useLang'
+import { assetUrl } from '../../../app/config/env'
 
 const { personal, t, isRtl } = useLang()
 

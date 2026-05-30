@@ -8,9 +8,9 @@ export const projects = [
   //   ما التقنيات المستخدمة، وما التحديات التي واجهتها 
   //   وكيف تم حلها.`,
   //   images: [
-  //     '/images/projects/project-1/1.jpg',
-  //     '/images/projects/project-1/2.jpg',
-  //     '/images/projects/project-1/3.jpg',
+  //     ' images/projects/project-1/1.jpg',
+  //     ' images/projects/project-1/2.jpg',
+  //     ' images/projects/project-1/3.jpg',
   //   ],
   //   tags: ['Vue', 'Laravel', 'MySQL'],
   //   github: 'https://github.com/username/project',
@@ -34,13 +34,13 @@ export const projects = [
     github: 'https://github.com/boraq1997',
     demo: 'https://procurement-demo.com',
     images: [
-      '/images/projects/Purchase_project/7.png',
-      '/images/projects/Purchase_project/1.png',
-      '/images/projects/Purchase_project/2.png',
-      '/images/projects/Purchase_project/3.png',
-      '/images/projects/Purchase_project/4.png',
-      '/images/projects/Purchase_project/5.png',
-      '/images/projects/Purchase_project/6.png',
+      ' images/projects/Purchase_project/7.png',
+      ' images/projects/Purchase_project/1.png',
+      ' images/projects/Purchase_project/2.png',
+      ' images/projects/Purchase_project/3.png',
+      ' images/projects/Purchase_project/4.png',
+      ' images/projects/Purchase_project/5.png',
+      ' images/projects/Purchase_project/6.png',
     ]
   },
   {
@@ -53,12 +53,12 @@ export const projects = [
     github: 'https://github.com/boraq1997',
     demo: 'https://restaurant-demo.com',
     images: [
-      '/images/projects/restaurant/1.png',
-      '/images/projects/restaurant/2.png',
-      '/images/projects/restaurant/3.png',
-      '/images/projects/restaurant/4.png',
-      '/images/projects/restaurant/5.png',
-      '/images/projects/restaurant/6.png',
+      ' images/projects/restaurant/1.png',
+      ' images/projects/restaurant/2.png',
+      ' images/projects/restaurant/3.png',
+      ' images/projects/restaurant/4.png',
+      ' images/projects/restaurant/5.png',
+      ' images/projects/restaurant/6.png',
     ]
   },
   {
@@ -74,15 +74,15 @@ export const projects = [
     github: 'https://github.com/boraq1997',
     demo: 'https://education-demo.com',
     images: [
-      '/images/projects/almuthaber/1.png',
-      '/images/projects/almuthaber/2.png',
-      '/images/projects/almuthaber/3.png',
-      '/images/projects/almuthaber/4.png',
-      '/images/projects/almuthaber/5.png',
-      '/images/projects/almuthaber/6.png',
-      '/images/projects/almuthaber/7.png',
-      '/images/projects/almuthaber/8.png',
-      '/images/projects/almuthaber/9.png'
+      ' images/projects/almuthaber/1.png',
+      ' images/projects/almuthaber/2.png',
+      ' images/projects/almuthaber/3.png',
+      ' images/projects/almuthaber/4.png',
+      ' images/projects/almuthaber/5.png',
+      ' images/projects/almuthaber/6.png',
+      ' images/projects/almuthaber/7.png',
+      ' images/projects/almuthaber/8.png',
+      ' images/projects/almuthaber/9.png'
     ]
   }
 ]

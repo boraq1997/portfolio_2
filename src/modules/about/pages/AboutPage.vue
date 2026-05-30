@@ -7,9 +7,10 @@
         <!-- Avatar -->
         <div class="flex justify-center">
           <img
-            :src="personal.avatar"
+            :src="assetUrl(personal.avatar)"
             :alt="personal.name"
-            class="w-64 h-64 object-cover rounded-2xl border border-zinc-800"
+            loading="lazy"
+            class="relative w-48 h-48 object-cover rounded-2xl border border-zinc-800 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
           />
         </div>
 
@@ -45,4 +46,5 @@
 
 <script setup lang="ts">
 import { personal } from '../../../data/ar/personal'
+import { assetUrl } from '../../../app/config/env'
 </script>
