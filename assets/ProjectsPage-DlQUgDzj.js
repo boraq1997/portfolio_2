@@ -1,0 +1,1 @@
+import{f as e,l as t,n}from"./index-83Xwoh6k.js";var r={};function i(n,r){return e(),t(`div`,null,`Projects`)}var a=n(r,[[`render`,i]]);export{a as default};
