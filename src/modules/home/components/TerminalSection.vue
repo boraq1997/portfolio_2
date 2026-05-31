@@ -504,7 +504,7 @@ async function scrollBottom() {
 let cursorInterval: ReturnType<typeof setInterval>
 onMounted(() => {
   cursorInterval = setInterval(() => { cursorVisible.value = !cursorVisible.value }, 520)
-  setTimeout(focusInput, 600)
+  // setTimeout(focusInput, 600)
 })
 onUnmounted(() => clearInterval(cursorInterval))
 </script>
