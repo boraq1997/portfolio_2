@@ -1,1 +1,0 @@
-import{d as e,f as t,p as n,t as r,u as i}from"./index-Cdwsw6rg.js";var a=t({__name:`HomePage`,setup(t){return(t,a)=>(n(),i(`div`,null,[e(r)]))}});export{a as default};

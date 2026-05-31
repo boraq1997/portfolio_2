@@ -1,1 +1,0 @@
-import{p as e,r as t,u as n}from"./index-Cdwsw6rg.js";var r={};function i(t,r){return e(),n(`div`,null,`Projects`)}var a=t(r,[[`render`,i]]);export{a as default};
