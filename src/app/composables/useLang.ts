@@ -87,6 +87,75 @@ export function useLang() {
     sentDesc: langStore.currentLang === 'ar' ? 'سأتواصل معك في أقرب وقت ممكن.' : "I'll get back to you as soon as possible.",
     sendAnother: langStore.currentLang === 'ar' ? 'إرسال رسالة أخرى' : 'Send another message',
 
+    workflowLabel:  langStore.currentLang === 'ar' ? 'منهجية العمل'                                  : 'My Process',
+    workflowTitle:  langStore.currentLang === 'ar' ? 'كيف أبني المشاريع'                              : 'How I Build Projects',
+    workflowDesc:   langStore.currentLang === 'ar' ? 'من أول لقاء مع الزبون حتى لحظة التسليم النهائي' : 'From the first client meeting to final delivery',
+    workflowDone:   langStore.currentLang === 'ar' ? 'تسليم المشروع بنجاح!'                           : 'Project delivered successfully!',
+    step:           langStore.currentLang === 'ar' ? 'خطوة'                                           : 'Step',
+ 
+    // Step 1
+    wf1Title: langStore.currentLang === 'ar' ? 'استقبال المتطلبات'       : 'Requirements Gathering',
+    wf1Desc:  langStore.currentLang === 'ar'
+      ? 'لقاء مع الزبون لفهم الفكرة، تحديد المشكلة، النطاق الكامل للمشروع، والجدول الزمني المتوقع. وثّق كل شيء.'
+      : 'Meeting with the client to understand the idea, define the problem, full project scope, and expected timeline. Document everything.',
+    wf1Tools: langStore.currentLang === 'ar'
+      ? ['اجتماع أولي', 'وثيقة المتطلبات', 'تحديد النطاق', 'جدول زمني']
+      : ['Initial Meeting', 'Requirements Doc', 'Scope Definition', 'Timeline'],
+ 
+    // Step 2
+    wf2Title: langStore.currentLang === 'ar' ? 'التخطيط والتصميم'       : 'Planning & Design',
+    wf2Desc:  langStore.currentLang === 'ar'
+      ? 'رسم Wireframes للواجهات، تحديد التقنيات المناسبة، تصميم هيكل المشروع، وتقسيم المهام إلى مراحل.'
+      : 'Drawing wireframes, choosing the right tech stack, designing project architecture, and breaking tasks into milestones.',
+    wf2Tools: langStore.currentLang === 'ar'
+      ? ['Wireframes', 'UI/UX Design', 'اختيار التقنيات', 'تقسيم المهام']
+      : ['Wireframes', 'UI/UX Design', 'Tech Stack', 'Task Breakdown'],
+ 
+    // Step 3
+    wf3Title: langStore.currentLang === 'ar' ? 'تصميم قاعدة البيانات'   : 'Database Design',
+    wf3Desc:  langStore.currentLang === 'ar'
+      ? 'رسم ERD وتحديد العلاقات بين الجداول، تصميم schema محكم يدعم التوسع المستقبلي وسلامة البيانات.'
+      : 'Drawing ERD and defining table relationships, designing a solid schema that supports future scaling and data integrity.',
+    wf3Tools: langStore.currentLang === 'ar'
+      ? ['ERD', 'MySQL / PostgreSQL', 'Schema Design', 'العلاقات']
+      : ['ERD', 'MySQL / PostgreSQL', 'Schema Design', 'Relations'],
+ 
+    // Step 4
+    wf4Title: langStore.currentLang === 'ar' ? 'تطوير الباكند'           : 'Backend Development',
+    wf4Desc:  langStore.currentLang === 'ar'
+      ? 'بناء RESTful APIs، طبقة الـ Services، نظام الصلاحيات RBAC، والمنطق الأساسي للمشروع بشكل نظيف وقابل للاختبار.'
+      : 'Building RESTful APIs, Services layer, RBAC permissions, and the core business logic — clean and testable.',
+    wf4Tools: langStore.currentLang === 'ar'
+      ? ['Laravel', 'Sanctum', 'Spatie RBAC', 'REST API', 'Services Layer']
+      : ['Laravel', 'Sanctum', 'Spatie RBAC', 'REST API', 'Services Layer'],
+ 
+    // Step 5
+    wf5Title: langStore.currentLang === 'ar' ? 'تطوير الواجهة'           : 'Frontend Development',
+    wf5Desc:  langStore.currentLang === 'ar'
+      ? 'بناء واجهة المستخدم التفاعلية، التكامل مع الـ API، إدارة الحالة، ودعم RTL للغة العربية.'
+      : 'Building the interactive UI, integrating with the API, state management, and RTL support for Arabic.',
+    wf5Tools: langStore.currentLang === 'ar'
+      ? ['Vue 3', 'TypeScript', 'Pinia', 'PrimeVue', 'RTL']
+      : ['Vue 3', 'TypeScript', 'Pinia', 'PrimeVue', 'RTL'],
+ 
+    // Step 6
+    wf6Title: langStore.currentLang === 'ar' ? 'الاختبار والمراجعة'      : 'Testing & Review',
+    wf6Desc:  langStore.currentLang === 'ar'
+      ? 'اختبار شامل للـ APIs والواجهة، مراجعة الزبون على بيئة تجريبية، إصلاح الأخطاء، وضمان الجودة.'
+      : 'Full API and UI testing, client review on a staging environment, bug fixing, and QA sign-off.',
+    wf6Tools: langStore.currentLang === 'ar'
+      ? ['Postman', 'Bug Fixing', 'Staging', 'مراجعة الزبون']
+      : ['Postman', 'Bug Fixing', 'Staging', 'Client Review'],
+ 
+    // Step 7
+    wf7Title: langStore.currentLang === 'ar' ? 'النشر والتسليم'          : 'Deployment & Delivery',
+    wf7Desc:  langStore.currentLang === 'ar'
+      ? 'نشر المشروع على السيرفر، توثيق الكود، تسليم الصلاحيات للزبون، وتدريبه على الاستخدام.'
+      : 'Deploying to production server, code documentation, handover to client, and usage training.',
+    wf7Tools: langStore.currentLang === 'ar'
+      ? ['Linux Server', 'توثيق', 'تدريب الزبون', 'تسليم نهائي']
+      : ['Linux Server', 'Documentation', 'Client Training', 'Final Handover'],
+
     // Footer
     quickLinks: langStore.currentLang === 'ar' ? 'روابط سريعة' : 'Quick Links',
     rights: langStore.currentLang === 'ar' ? 'جميع الحقوق محفوظة.' : 'All rights reserved.',

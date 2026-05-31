@@ -1,40 +1,46 @@
 <template>
-  <section id="skills" class="relative py-32 px-6 overflow-hidden">
+  <section id="skills" class="py-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex flex-col lg:flex-row gap-8">
 
-    <div class="absolute inset-0 pointer-events-none">
-      <div class="absolute top-1/2 right-1/4 w-96 h-96 bg-red-950/10 rounded-full blur-3xl" />
-    </div>
+        <!-- 3D Sphere -->
+        <div class="flex-1 flex flex-col items-center justify-center h-[500px] relative group">
+          <canvas ref="canvasRef" class="w-full h-full cursor-grab active:cursor-grabbing" />
+          
+          <!-- Hover Tooltip -->
+          <div 
+            v-if="hoveredSkill"
+            class="absolute bottom-8 left-1/2 -translate-x-1/2 px-4 py-2 bg-zinc-900 border border-zinc-700 rounded-xl text-white text-sm font-medium whitespace-nowrap shadow-2xl backdrop-blur-sm z-10 pointer-events-none animate-in fade-in duration-200"
+            :style="{ borderColor: hoveredSkill.color + '66' }"
+          >
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full" :style="{ background: hoveredSkill.color }" />
+              {{ hoveredSkill.name }}
+            </div>
+          </div>
 
-    <div class="relative max-w-6xl mx-auto" :dir="isRtl ? 'rtl' : 'ltr'">
-
-      <!-- Header -->
-      <div class="flex flex-col gap-2 mb-16 scroll-animate">
-        <span class="text-red-500 text-sm tracking-widest uppercase font-medium">{{ t.whatIKnow }}</span>
-        <h2 class="text-4xl md:text-5xl font-black text-white">{{ t.skillsTitle }}</h2>
-        <div class="w-12 h-1 bg-red-600 rounded-full mt-2" />
-      </div>
-
-      <!-- Main Grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-
-        <!-- Left: Sphere -->
-        <div class="flex flex-col items-center gap-4 scroll-animate-left">
-          <canvas ref="canvasRef" class="w-full max-w-sm aspect-square cursor-grab active:cursor-grabbing" />
-          <p class="text-zinc-600 text-xs tracking-widest">{{ t.dragToExplore }}</p>
+          <!-- Level Badge -->
+          <div 
+            v-if="hoveredSkill"
+            class="absolute top-8 right-8 px-3 py-1.5 bg-zinc-900/80 border rounded-lg text-xs font-bold backdrop-blur-sm animate-in fade-in duration-200"
+            :style="{ color: hoveredSkill.color, borderColor: hoveredSkill.color + '33' }"
+          >
+            Level {{ hoveredSkill.level }}%
+          </div>
         </div>
 
-        <!-- Right: Skills -->
-        <div class="flex flex-col gap-4 scroll-animate-right">
+        <!-- Skills Panel -->
+        <div class="flex-1 flex flex-col gap-6">
 
-          <!-- Tabs -->
-          <div class="flex items-center gap-2 bg-zinc-900/60 border border-zinc-800 rounded-2xl p-1.5 overflow-x-auto no-scrollbar">
+          <!-- Category Tabs -->
+          <div class="flex flex-wrap gap-2">
             <button
               v-for="(category, i) in skills"
               :key="category.category"
               @click="switchTab(i)"
-              class="flex-shrink-0 py-2 px-3 rounded-xl text-xs font-medium transition-all duration-200 whitespace-nowrap"
-              :class="activeTab === i ? 'text-white' : 'text-zinc-500 hover:text-zinc-300'"
-              :style="activeTab === i ? { background: category.color + '33', color: category.color } : {}"
+              class="px-4 py-2 rounded-full text-xs font-medium transition-all duration-200 border"
+              :class="activeTab === i ? 'text-white' : 'text-zinc-500 hover:text-zinc-300 border-transparent'"
+              :style="activeTab === i ? { background: category.color + '33', color: category.color, borderColor: category.color + '66' } : {}"
             >
               {{ category.category }}
             </button>
@@ -62,7 +68,7 @@
                 class="flex items-center gap-3 group"
               >
                 <div
-                  class="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-200 group-hover:scale-110"
+                  class="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg"
                   :style="{ background: skill.color + '18' }"
                 >
                   <Icon :icon="skill.icon" class="w-4 h-4" />
@@ -112,11 +118,12 @@ import { Icon } from '@iconify/vue'
 import * as THREE from 'three'
 import { useLang } from '../../../app/composables/useLang'
 
-const { skills, t, isRtl } = useLang()
+const { skills, t } = useLang()
 
 const canvasRef = ref<HTMLCanvasElement>()
 const animated = ref(false)
 const activeTab = ref(0)
+const hoveredSkill = ref<any>(null)
 
 const allSkillsList = computed(() =>
   skills.value.flatMap(c => c.items).filter((s, i, arr) =>
@@ -142,6 +149,9 @@ let renderer: THREE.WebGLRenderer
 let animationId: number
 let sphereMesh: THREE.Mesh
 let pointsGroup: THREE.Group
+let raycaster: THREE.Raycaster
+let mouse: THREE.Vector2
+const spriteMap = new Map<THREE.Sprite, any>()
 
 async function initSphere() {
   const canvas = canvasRef.value!
@@ -156,20 +166,34 @@ async function initSphere() {
   renderer.setSize(w, h)
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
-  sphereMesh = new THREE.Mesh(
-    new THREE.IcosahedronGeometry(1.15, 4),
-    new THREE.MeshBasicMaterial({ color: 0xef4444, wireframe: true, transparent: true, opacity: 0.2 })
-  )
-  scene.add(sphereMesh)
-
+  // Inner dark sphere
   scene.add(new THREE.Mesh(
-    new THREE.SphereGeometry(1.12, 32, 32),
-    new THREE.MeshBasicMaterial({ color: 0x3f0808, transparent: true, opacity: 0.25 })
+    new THREE.SphereGeometry(1.0, 32, 32),
+    new THREE.MeshBasicMaterial({ color: 0x1a0800, transparent: true, opacity: 0.6 })
   ))
 
-  const ringGeo = new THREE.TorusGeometry(1.15, 0.004, 8, 100)
-  scene.add(new THREE.Mesh(ringGeo, new THREE.MeshBasicMaterial({ color: 0xef4444, transparent: true, opacity: 0.4 })))
+  // Particle cloud shell
+  const particleCount = 700
+  const particlePositions: number[] = []
+  for (let i = 0; i < particleCount; i++) {
+    const phi   = Math.acos(-1 + (2 * i) / particleCount)
+    const theta = Math.sqrt(particleCount * Math.PI) * phi
+    const r     = 1.15 + (Math.random() - 0.5) * 0.18
+    particlePositions.push(
+      r * Math.sin(phi) * Math.cos(theta),
+      r * Math.sin(phi) * Math.sin(theta),
+      r * Math.cos(phi)
+    )
+  }
+  const particleGeo = new THREE.BufferGeometry()
+  particleGeo.setAttribute('position', new THREE.Float32BufferAttribute(particlePositions, 3))
+  sphereMesh = new THREE.Points(
+    particleGeo,
+    new THREE.PointsMaterial({ color: 0xff5500, size: 0.016, transparent: true, opacity: 0.85 })
+  ) as unknown as THREE.Mesh
+  scene.add(sphereMesh)
 
+  // Place skill icons
   const allSkills = skills.value.flatMap(c => c.items.map(i => ({ ...i })))
   pointsGroup = new THREE.Group()
 
@@ -184,11 +208,18 @@ async function initSphere() {
 
     const sprite = await makeIconSprite(skill.name, skill.color, skill.icon)
     sprite.position.set(x, y, z)
+    sprite.userData = { skill, origScale: sprite.scale.clone() }
+    spriteMap.set(sprite, skill)
     pointsGroup.add(sprite)
   }))
 
   scene.add(pointsGroup)
 
+  // Raycasting setup
+  raycaster = new THREE.Raycaster()
+  mouse = new THREE.Vector2()
+
+  // Mouse interaction
   let isDragging = false
   let prev = { x: 0, y: 0 }
 
@@ -199,15 +230,54 @@ async function initSphere() {
     pointsGroup.rotation.x += dy * 0.005
   }
 
+  // Hover detection
+  canvas.addEventListener('mousemove', (e) => {
+    if (isDragging) return
+
+    const rect = canvas.getBoundingClientRect()
+    mouse.x = ((e.clientX - rect.left) / w) * 2 - 1
+    mouse.y = -((e.clientY - rect.top) / h) * 2 + 1
+
+    raycaster.setFromCamera(mouse, camera)
+    const intersects = raycaster.intersectObjects(pointsGroup.children)
+
+    hoveredSkill.value = null
+    
+    // Reset all sprites
+    spriteMap.forEach(( sprite) => {
+      sprite.scale.copy(sprite.userData.origScale)
+      ;(sprite.material as THREE.SpriteMaterial).opacity = 0.9
+    })
+
+    if (intersects.length > 0) {
+      const hoveredSprite = intersects[0].object as THREE.Sprite
+      hoveredSkill.value = spriteMap.get(hoveredSprite)
+      
+      // Highlight hovered sprite
+      hoveredSprite.scale.multiplyScalar(1.4)
+      ;(hoveredSprite.material as THREE.SpriteMaterial).opacity = 1
+    }
+  })
+
+  canvas.addEventListener('mouseleave', () => {
+    hoveredSkill.value = null
+    spriteMap.forEach((_, sprite) => {
+      sprite.scale.copy(sprite.userData.origScale)
+      ;(sprite.material as THREE.SpriteMaterial).opacity = 0.9
+    })
+  })
+
   canvas.addEventListener('mousedown', e => { isDragging = true; prev = { x: e.clientX, y: e.clientY } })
   canvas.addEventListener('touchstart', e => { isDragging = true; prev = { x: e.touches[0].clientX, y: e.touches[0].clientY } })
   window.addEventListener('mouseup', () => isDragging = false)
   window.addEventListener('touchend', () => isDragging = false)
+  
   canvas.addEventListener('mousemove', e => {
     if (!isDragging) return
     onMove(e.clientX - prev.x, e.clientY - prev.y)
     prev = { x: e.clientX, y: e.clientY }
   })
+  
   canvas.addEventListener('touchmove', e => {
     if (!isDragging) return
     onMove(e.touches[0].clientX - prev.x, e.touches[0].clientY - prev.y)
@@ -226,12 +296,13 @@ async function initSphere() {
 }
 
 async function makeIconSprite(name: string, color: string, iconUrl: string): Promise<THREE.Sprite> {
-  const size = 64
+  const size = 80
   const cv = document.createElement('canvas')
-  cv.width = size; cv.height = size
+  cv.width = size
+  cv.height = size
   const ctx = cv.getContext('2d')!
 
-  const iconSize = 36
+  const iconSize = 56
   const iconX = (size - iconSize) / 2
   const iconY = (size - iconSize) / 2
 
@@ -241,7 +312,7 @@ async function makeIconSprite(name: string, color: string, iconUrl: string): Pro
     )
     ctx.drawImage(img, iconX, iconY, iconSize, iconSize)
   } catch {
-    ctx.font = `bold 24px Arial`
+    ctx.font = `bold 28px Arial`
     ctx.fillStyle = color
     ctx.textAlign = 'center'
     ctx.textBaseline = 'middle'
@@ -249,9 +320,14 @@ async function makeIconSprite(name: string, color: string, iconUrl: string): Pro
   }
 
   const texture = new THREE.CanvasTexture(cv)
-  const mat = new THREE.SpriteMaterial({ map: texture, transparent: true, depthWrite: false })
+  const mat = new THREE.SpriteMaterial({ 
+    map: texture, 
+    transparent: true, 
+    depthWrite: false,
+    opacity: 0.9
+  })
   const sprite = new THREE.Sprite(mat)
-  sprite.scale.set(0.28, 0.28, 1)
+  sprite.scale.set(0.3, 0.3, 1)
   return sprite
 }
 
@@ -290,4 +366,19 @@ onUnmounted(() => {
 <style scoped>
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-in.fade-in {
+  animation: fadeIn 0.2s ease-out;
+}
 </style>

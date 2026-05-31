@@ -16,7 +16,7 @@
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
 
-        <!-- Left: Info -->
+        <!-- ── Left: Info (unchanged) ── -->
         <div class="flex flex-col gap-8 scroll-animate-right">
 
           <p class="text-zinc-400 text-lg leading-relaxed">
@@ -50,7 +50,7 @@
             >
               <div class="w-10 h-10 rounded-xl bg-red-950/30 border border-red-900/30 flex items-center justify-center group-hover:bg-red-900/30 transition-colors">
                 <svg class="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.338c0-1.01.49-1.958 1.316-2.55l1.18-.847a1.5 1.5 0 011.89.195l1.834 1.834a1.5 1.5 0 01.11 2.001L7.2 8.547a13.493 13.493 0 006.257 6.252l1.578-1.38a1.5 1.5 0 012.001.11l1.834 1.835a1.5 1.5 0 01.195 1.889l-.847 1.18a3.001 3.001 0 01-2.55 1.317C8.563 19.5 4.5 15.437 4.5 10.5a8.25 8.25 0 01-2.25-4.162z" />
                 </svg>
               </div>
               <div class="flex flex-col">
@@ -76,16 +76,16 @@
             </div>
           </div>
 
-          <!-- Social Links -->
+          <!-- Social links -->
           <div class="flex flex-col gap-3">
-            <span class="text-zinc-600 text-xs tracking-widest uppercase">{{ t.connectVia }}</span>
+            <span class="text-zinc-500 text-xs font-medium uppercase tracking-widest">{{ t.contactVia }}</span>
             <div class="flex flex-wrap gap-3">
               <a
                 v-for="(url, platform) in personal.social"
                 :key="platform"
                 :href="url"
                 target="_blank"
-                class="flex items-center gap-2 px-4 py-2.5 bg-zinc-900/60 border border-zinc-800 rounded-xl text-zinc-400 hover:text-white hover:border-zinc-600 transition-all duration-200 text-sm"
+                class="flex items-center gap-2 bg-zinc-900/60 border border-zinc-800 rounded-xl px-4 py-2.5 text-zinc-400 hover:text-white hover:border-zinc-700 transition-all duration-200 text-sm group"
               >
                 <svg v-if="platform === 'github'" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
                 <svg v-else-if="platform === 'telegram'" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
@@ -99,71 +99,113 @@
 
         </div>
 
-        <!-- Right: Form -->
-        <div class="bg-zinc-900/60 border border-zinc-800 rounded-3xl p-8 flex flex-col gap-5 scroll-animate-left">
+        <!-- ── Right: IDE-style Form ── -->
+        <div class="scroll-animate-left" dir="ltr">
+          <div
+            class="rounded-xl overflow-hidden border border-zinc-800/70"
+            style="background:#0e0e10; box-shadow:0 24px 60px -8px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.03)"
+          >
 
-          <!-- Success -->
-          <div v-if="submitted" class="flex flex-col items-center justify-center gap-3 py-12 text-center">
-            <div class="w-16 h-16 rounded-full bg-green-950/50 border border-green-900/50 flex items-center justify-center text-2xl text-green-400">✓</div>
-            <h3 class="text-white font-bold text-lg">{{ t.sent }}</h3>
-            <p class="text-zinc-500 text-sm">{{ t.sentDesc }}</p>
-            <button @click="submitted = false" class="text-red-500 text-xs hover:text-red-400 transition-colors mt-2">
-              {{ t.sendAnother }}
-            </button>
+            <!-- Tab bar -->
+            <div class="flex items-center border-b border-zinc-800/60 px-3" style="background:#141416">
+              <div class="flex items-center gap-2 px-3 py-2.5 border-b-2 border-red-500">
+                <svg class="w-3 h-3 text-blue-400" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M3 3h18v18H3z" opacity=".15"/>
+                  <path d="M13.5 3H3v18h18V3H13.5zM12 8.5l-4 4 4 4-1.5 1.5L5 12l5.5-5.5L12 8.5zm5.5 4L12 18l-1.5-1.5 4-4-4-4L12 7l5.5 5.5z"/>
+                </svg>
+                <span class="text-zinc-300 text-xs font-mono">sendMessage.ts</span>
+                <span class="text-zinc-600 text-xs">×</span>
+              </div>
+              <span class="ms-auto text-zinc-700 text-[11px] font-mono pe-3">TypeScript</span>
+            </div>
+
+            <!-- Success -->
+            <div v-if="submitted" class="flex flex-col items-center justify-center gap-4 text-center py-16 px-8">
+              <div class="w-14 h-14 rounded-full flex items-center justify-center border text-xl" style="background:rgba(34,197,94,0.08);border-color:rgba(34,197,94,0.2)">✓</div>
+              <div>
+                <div class="text-white font-bold mb-1">{{ t.sent }}</div>
+                <div class="text-zinc-500 text-sm">{{ t.sentDesc }}</div>
+              </div>
+              <button @click="submitted = false" class="text-red-500 text-xs hover:text-red-400 font-mono transition-colors mt-1">
+                // {{ t.sendAnother }}
+              </button>
+            </div>
+
+            <template v-else>
+
+              <!-- mail.compose header -->
+              <div class="flex items-center justify-between px-5 py-3 border-b border-zinc-800/40" style="background:#111113">
+                <div class="flex items-center gap-2">
+                  <svg class="w-3.5 h-3.5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                  </svg>
+                  <span class="text-zinc-300 text-xs font-mono">mail.compose</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <div class="w-1.5 h-1.5 rounded-full bg-green-500" style="box-shadow:0 0 5px #22c55e80" />
+                  <span class="text-zinc-600 text-[11px] font-mono">secure channel</span>
+                </div>
+              </div>
+
+              <!-- To line -->
+              <div class="flex items-center justify-between px-5 py-2 border-b border-zinc-800/30" style="background:#0f0f11">
+                <div class="flex items-center gap-2 font-mono text-xs">
+                  <span class="text-zinc-600">to:</span>
+                  <span class="text-red-400">boraqnz@gmail.com</span>
+                </div>
+                <div class="flex items-center gap-2 font-mono text-xs">
+                  <span class="text-zinc-700">response:</span>
+                  <span class="text-green-400">within 24h</span>
+                </div>
+              </div>
+
+              <!-- Fields -->
+              <div class="p-5 space-y-4">
+
+                <div class="grid grid-cols-2 gap-4">
+                  <div class="flex flex-col gap-1.5">
+                    <label class="text-zinc-600 text-[10px] font-mono tracking-widest uppercase">{{ t.name }}</label>
+                    <input v-model="form.name" type="text" :placeholder="t.namePlaceholder" class="contact-input" />
+                  </div>
+                  <div class="flex flex-col gap-1.5">
+                    <label class="text-zinc-600 text-[10px] font-mono tracking-widest uppercase">{{ t.emailLabel }}</label>
+                    <input v-model="form.email" type="email" placeholder="your@email.com" class="contact-input" />
+                  </div>
+                </div>
+
+                <div class="flex flex-col gap-1.5">
+                  <label class="text-zinc-600 text-[10px] font-mono tracking-widest uppercase">{{ t.subject }}</label>
+                  <input v-model="form.subject" type="text" :placeholder="t.subjectPlaceholder" class="contact-input" />
+                </div>
+
+                <div class="flex flex-col gap-1.5">
+                  <label class="text-zinc-600 text-[10px] font-mono tracking-widest uppercase">{{ t.message }}</label>
+                  <textarea v-model="form.message" rows="5" :placeholder="t.messagePlaceholder" class="contact-input resize-none" />
+                </div>
+
+                <div class="text-zinc-700 text-[11px] font-mono">
+                  <span class="text-zinc-800">// </span>Protected by spam filters and rate limits
+                </div>
+              </div>
+
+              <!-- Send button -->
+              <div class="px-5 pb-5">
+                <button
+                  @click="handleSubmit"
+                  :disabled="loading"
+                  class="send-btn group flex items-center gap-3 px-6 py-3 rounded-lg font-mono text-sm font-bold uppercase tracking-widest transition-all duration-200 disabled:opacity-50"
+                >
+                  <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5.14v14l11-7-11-7z"/>
+                  </svg>
+                  <span>{{ loading ? t.sending : t.send.replace(' ←','').replace(' →','') }}</span>
+                </button>
+              </div>
+
+            </template>
           </div>
-
-          <!-- Form -->
-          <template v-else>
-            <div class="flex flex-col gap-1.5">
-              <label class="text-zinc-400 text-xs font-medium">{{ t.name }}</label>
-              <input
-                v-model="form.name"
-                type="text"
-                :placeholder="t.namePlaceholder"
-                class="bg-zinc-800/50 border border-zinc-700 rounded-xl px-4 py-3 text-white text-sm placeholder-zinc-600 focus:outline-none focus:border-red-800 transition-colors"
-              />
-            </div>
-
-            <div class="flex flex-col gap-1.5">
-              <label class="text-zinc-400 text-xs font-medium">{{ t.emailLabel }}</label>
-              <input
-                v-model="form.email"
-                type="email"
-                placeholder="your@email.com"
-                class="bg-zinc-800/50 border border-zinc-700 rounded-xl px-4 py-3 text-white text-sm placeholder-zinc-600 focus:outline-none focus:border-red-800 transition-colors"
-              />
-            </div>
-
-            <div class="flex flex-col gap-1.5">
-              <label class="text-zinc-400 text-xs font-medium">{{ t.subject }}</label>
-              <input
-                v-model="form.subject"
-                type="text"
-                :placeholder="t.subjectPlaceholder"
-                class="bg-zinc-800/50 border border-zinc-700 rounded-xl px-4 py-3 text-white text-sm placeholder-zinc-600 focus:outline-none focus:border-red-800 transition-colors"
-              />
-            </div>
-
-            <div class="flex flex-col gap-1.5">
-              <label class="text-zinc-400 text-xs font-medium">{{ t.message }}</label>
-              <textarea
-                v-model="form.message"
-                rows="5"
-                :placeholder="t.messagePlaceholder"
-                class="bg-zinc-800/50 border border-zinc-700 rounded-xl px-4 py-3 text-white text-sm placeholder-zinc-600 focus:outline-none focus:border-red-800 transition-colors resize-none"
-              />
-            </div>
-
-            <button
-              @click="handleSubmit"
-              :disabled="loading"
-              class="w-full py-3.5 bg-red-600 hover:bg-red-700 disabled:opacity-50 text-white font-semibold rounded-xl transition-colors duration-200 flex items-center justify-center gap-2 text-sm"
-            >
-              <span>{{ loading ? t.sending : t.send }}</span>
-            </button>
-          </template>
-
         </div>
+
       </div>
     </div>
   </section>
@@ -178,39 +220,53 @@ import { useLang } from '../../../app/composables/useLang'
 const { personal, t, isRtl } = useLang()
 
 const submitted = ref(false)
-const loading = ref(false)
-
-const form = reactive({
-  name: '',
-  email: '',
-  subject: '',
-  message: '',
-})
+const loading   = ref(false)
+const form      = reactive({ name: '', email: '', subject: '', message: '' })
 
 async function handleSubmit() {
   if (!form.name || !form.email || !form.message) return
   loading.value = true
-
   try {
     await emailjs.send(
       emailjsConfig.serviceId,
       emailjsConfig.templateId,
-      {
-        from_name: form.name,
-        from_email: form.email,
-        subject: form.subject,
-        message: form.message,
-        time: new Date().toLocaleString('ar-IQ'),
-      },
+      { from_name: form.name, from_email: form.email, subject: form.subject, message: form.message, time: new Date().toLocaleString('ar-IQ') },
       emailjsConfig.publicKey
     )
     submitted.value = true
     Object.assign(form, { name: '', email: '', subject: '', message: '' })
-  } catch (error) {
-    console.error('EmailJS Error:', error)
+  } catch {
     alert(isRtl.value ? 'حدث خطأ أثناء الإرسال، حاول مرة أخرى.' : 'An error occurred, please try again.')
   } finally {
     loading.value = false
   }
 }
 </script>
+
+<style scoped>
+.contact-input {
+  width: 100%;
+  background: #0a0a0c;
+  border: 1px solid rgba(63,63,70,0.5);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #e4e4e7;
+  font-size: 13px;
+  font-family: ui-monospace, 'JetBrains Mono', monospace;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.contact-input::placeholder { color: #3f3f46; }
+.contact-input:focus { border-color: rgba(239,68,68,0.35); }
+
+.send-btn {
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.3);
+  color: #ef4444;
+}
+.send-btn:hover:not(:disabled) {
+  background: rgba(239,68,68,0.18);
+  border-color: rgba(239,68,68,0.55);
+  box-shadow: 0 0 20px rgba(239,68,68,0.12);
+}
+</style>
